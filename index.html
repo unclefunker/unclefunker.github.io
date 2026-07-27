@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>낭만라이더 · Romantic Rider</title>
+  <meta name="description" content="낭만라이더(Romantic Rider) — 시공간 다이어리(Spacetime Diary)를 만드는 1인 개발 스튜디오">
+  <style>
+    :root {
+      --ink: #2e2127;
+      --surface: #fff7f2;
+      --pink: #e23e77;
+      --coral: #fb6a3c;
+      --amber: #ffc24b;
+      --muted: #8a7580;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", "Segoe UI", sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+    }
+    main { max-width: 40rem; width: 100%; }
+    .mark {
+      width: 3.25rem; height: 3.25rem; border-radius: 1rem;
+      background: linear-gradient(135deg, var(--coral), var(--pink));
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(226, 62, 119, 0.28);
+      margin-bottom: 1.5rem;
+    }
+    .mark svg { width: 1.75rem; height: 1.75rem; }
+    h1 {
+      font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    h1 .en {
+      display: block;
+      font-size: 0.5em;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+    .tagline {
+      margin-top: 1.25rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #5b4a53;
+    }
+    .apps { margin-top: 2.5rem; }
+    .app-card {
+      background: #fff;
+      border: 1px solid rgba(226, 62, 119, 0.14);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 16px rgba(46, 33, 39, 0.05);
+    }
+    .app-card h2 { font-size: 1.2rem; font-weight: 700; }
+    .app-card h2 .en { font-weight: 500; color: var(--muted); font-size: 0.85em; }
+    .app-card p { margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.65; color: #5b4a53; }
+    .badge {
+      display: inline-block;
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--pink);
+      background: rgba(226, 62, 119, 0.09);
+      border-radius: 999px;
+      padding: 0.3rem 0.8rem;
+    }
+    .links {
+      margin-top: 1.1rem;
+      display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem;
+      font-size: 0.88rem;
+    }
+    .links a { color: var(--pink); text-decoration: none; font-weight: 600; }
+    .links a:hover { text-decoration: underline; }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    footer a { color: inherit; }
+    @media (prefers-color-scheme: dark) {
+      :root { --surface: #1d1216; --ink: #fff7f2; --muted: #a98f9b; }
+      body { background: var(--surface); color: var(--ink); }
+      .tagline, .app-card p { color: #cbb6bf; }
+      .app-card { background: #2a1c22; border-color: rgba(226, 62, 119, 0.25); box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="6" width="18" height="14" rx="3.5" stroke="#fff" stroke-width="1.8"/>
+        <path d="M8.5 6l1.2-2h4.6l1.2 2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="13" r="4" stroke="#fff" stroke-width="1.8"/>
+        <path d="M12 11.2v1.8l1.3 1.3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>
+      낭만라이더
+      <span class="en">Romantic Rider</span>
+    </h1>
+    <p class="tagline">
+      시간과 장소를 사진에 새기는 앱을 만드는 1인 개발 스튜디오입니다.<br>
+      A one-person studio crafting apps that stamp time &amp; place onto your photos.
+    </p>
+
+    <section class="apps" aria-label="Apps">
+      <article class="app-card">
+        <h2>시공간 다이어리 <span class="en">· Spacetime Diary</span></h2>
+        <p>
+          찍는 순간 시간과 GPS 좌표가 사진에 새겨지고, 새겨진 사진은 지도 위
+          스탬프로 쌓입니다. 계정도 서버도 없이, 모든 기록은 내 기기 안에만.
+        </p>
+        <span class="badge">Google Play 출시 준비 중 · Coming soon</span>
+        <div class="links">
+          <a href="https://unclefunker.github.io/romanticrider-legal/spacetime/privacy.html">개인정보처리방침</a>
+          <a href="https://unclefunker.github.io/romanticrider-legal/spacetime/privacy-en.html">Privacy Policy</a>
+          <a href="https://unclefunker.github.io/romanticrider-legal/spacetime/terms.html">이용약관</a>
+          <a href="https://unclefunker.github.io/romanticrider-legal/spacetime/terms-en.html">Terms of Service</a>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      낭만라이더 (Romantic Rider) · 대표 임문식<br>
+      문의 <a href="mailto:romanticrider.app@gmail.com">romanticrider.app@gmail.com</a>
+    </footer>
+  </main>
+</body>
+</html>
