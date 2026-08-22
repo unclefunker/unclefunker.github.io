@@ -3,16 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>낭만라이더 · Romantic Rider</title>
-  <meta name="description" content="낭만라이더(Romantic Rider) — 시공간 다이어리(Spacetime Diary)를 만드는 1인 개발 스튜디오">
+  <title>시공간 다이어리 · Spacetime Diary — 낭만라이더 (Romantic Rider)</title>
+  <meta name="description" content="시공간 다이어리(Spacetime Diary) — 사진을 찍는 순간 촬영 시각과 GPS 좌표를 사진에 새기고, 그 사진을 지도 위 스탬프로 모아 두는 안드로이드 앱입니다. 만든 곳은 1인 개발 스튜디오 낭만라이더(Romantic Rider).">
   <style>
     :root {
-      --ink: #2e2127;
-      --surface: #fff7f2;
+      /* 페이지 기조 = 파스텔 블루 */
+      --surface: #f1f6fd;
+      --surface-card: #ffffff;
+      --ink: #1b2635;
+      --body: #48586f;
+      --muted: #7688a3;
+      --blue: #3d6fd6;
+      --sky: #77abf2;
+      --line: rgba(61, 111, 214, 0.16);
+      /* 낭만라이더(스튜디오) 전용 — 기존 색 유지 */
       --pink: #e23e77;
       --coral: #fb6a3c;
-      --amber: #ffc24b;
-      --muted: #8a7580;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -55,26 +61,42 @@
       margin-top: 1.25rem;
       font-size: 1.05rem;
       line-height: 1.7;
-      color: #5b4a53;
+      color: var(--body);
     }
-    .apps { margin-top: 2.5rem; }
+    .eyebrow {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--pink); margin-bottom: 0.6rem;
+    }
+    .apps { margin-top: 2.5rem; display: grid; gap: 1rem; }
+    .apps > h2.section-label {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .store {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 0.9rem; font-size: 0.82rem; font-weight: 700;
+      color: #fff; background: linear-gradient(135deg, var(--sky), var(--blue));
+      border-radius: 999px; padding: 0.45rem 1rem; text-decoration: none;
+      box-shadow: 0 6px 18px rgba(61, 111, 214, 0.26);
+    }
+    .store:hover { filter: brightness(1.06); }
     .app-card {
-      background: #fff;
-      border: 1px solid rgba(226, 62, 119, 0.14);
+      background: var(--surface-card);
+      border: 1px solid var(--line);
       border-radius: 1.25rem;
       padding: 1.5rem;
-      box-shadow: 0 2px 16px rgba(46, 33, 39, 0.05);
+      box-shadow: 0 2px 18px rgba(27, 38, 53, 0.06);
     }
     .app-card h2 { font-size: 1.2rem; font-weight: 700; }
     .app-card h2 .en { font-weight: 500; color: var(--muted); font-size: 0.85em; }
-    .app-card p { margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.65; color: #5b4a53; }
+    .app-card p { margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.65; color: var(--body); }
     .badge {
       display: inline-block;
       margin-top: 0.9rem;
       font-size: 0.78rem;
       font-weight: 700;
-      color: var(--pink);
-      background: rgba(226, 62, 119, 0.09);
+      color: var(--blue);
+      background: rgba(61, 111, 214, 0.10);
       border-radius: 999px;
       padding: 0.3rem 0.8rem;
     }
@@ -83,7 +105,7 @@
       display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem;
       font-size: 0.88rem;
     }
-    .links a { color: var(--pink); text-decoration: none; font-weight: 600; }
+    .links a { color: var(--blue); text-decoration: none; font-weight: 600; }
     .links a:hover { text-decoration: underline; }
     footer {
       margin-top: 3rem;
@@ -93,10 +115,18 @@
     }
     footer a { color: inherit; }
     @media (prefers-color-scheme: dark) {
-      :root { --surface: #1d1216; --ink: #fff7f2; --muted: #a98f9b; }
+      :root {
+        --surface: #0f1725;
+        --surface-card: #182233;
+        --ink: #eef4ff;
+        --body: #c2cee1;
+        --muted: #93a3bd;
+        --blue: #7aaaf6;
+        --sky: #9cc4fb;
+        --line: rgba(122, 170, 246, 0.24);
+      }
       body { background: var(--surface); color: var(--ink); }
-      .tagline, .app-card p { color: #cbb6bf; }
-      .app-card { background: #2a1c22; border-color: rgba(226, 62, 119, 0.25); box-shadow: none; }
+      .app-card { box-shadow: none; }
     }
   </style>
 </head>
@@ -110,28 +140,60 @@
         <path d="M12 11.2v1.8l1.3 1.3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </div>
+    <p class="eyebrow">낭만라이더 · Romantic Rider</p>
     <h1>
-      낭만라이더
-      <span class="en">Romantic Rider</span>
+      시공간 다이어리
+      <span class="en">Spacetime Diary</span>
     </h1>
     <p class="tagline">
-      시간과 장소를 사진에 새기는 앱을 만드는 1인 개발 스튜디오입니다.<br>
-      A one-person studio crafting apps that stamp time &amp; place onto your photos.
+      사진을 찍는 순간, <strong>촬영 시각과 GPS 좌표가 사진에 그대로 새겨집니다.</strong>
+      새겨진 사진은 지도 위 스탬프로 쌓여, 언제 어디에 있었는지가 한 장의 지도로 남습니다.
+      안드로이드용 카메라 · 지도 앱이며, 만든 곳은 1인 개발 스튜디오 낭만라이더입니다.<br>
+      <span lang="en">The moment you shoot, the time and GPS coordinates are stamped onto the photo
+      itself. Stamped photos pile up as pins on a map, turning where you have been into a diary you
+      can see — an Android camera &amp; map app by Romantic Rider, a one-person studio.</span>
+    </p>
+    <p class="tagline">
+      기록은 <strong>기본적으로 내 기기에</strong> 저장됩니다. 다른 사람과 사진을 나누는 공유
+      기능은 원할 때만, 선택 로그인으로 사용합니다.<br>
+      <span lang="en">Your records stay on your device by default. Sharing photos with others is
+      opt-in — only then does it use an optional sign-in.</span>
     </p>
 
     <section class="apps" aria-label="Apps">
+      <h2 class="section-label">Apps</h2>
+
       <article class="app-card">
         <h2>시공간 다이어리 <span class="en">· Spacetime Diary</span></h2>
         <p>
-          찍는 순간 시간과 GPS 좌표가 사진에 새겨지고, 새겨진 사진은 지도 위
-          스탬프로 쌓입니다. 계정도 서버도 없이, 모든 기록은 내 기기 안에만.
+          타임스탬프와 GPS 좌표가 사진 위에 함께 찍히고, 그 사진들이 지도 위 스탬프로 모입니다.
+          전국 어디서나 쓰는 기본판이고, 촬영과 열람은 <strong>네트워크 없이도</strong> 됩니다.
         </p>
-        <span class="badge">Google Play 출시 준비 중 · Coming soon</span>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.romanticrider.spacetime">
+          Google Play 에서 받기 · Get it on Google Play
+        </a>
         <div class="links">
           <a href="https://unclefunker.github.io/romanticrider-legal/spacetime/privacy.html">개인정보처리방침</a>
           <a href="https://unclefunker.github.io/romanticrider-legal/spacetime/privacy-en.html">Privacy Policy</a>
           <a href="https://unclefunker.github.io/romanticrider-legal/spacetime/terms.html">이용약관</a>
           <a href="https://unclefunker.github.io/romanticrider-legal/spacetime/terms-en.html">Terms of Service</a>
+        </div>
+      </article>
+
+      <article class="app-card">
+        <h2>남해: 시공간 다이어리 <span class="en">· Namhae Edition</span></h2>
+        <p>
+          경남 남해군을 여행할 때 쓰는 지역 특화판입니다. 관광 정보를 지도에서 함께 보고,
+          장소마다 남긴 사진을 다른 여행자와 나눌 수 있습니다.
+        </p>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.romanticrider.namhae">
+          Google Play 에서 받기 · Get it on Google Play
+        </a>
+        <div class="links">
+          <a href="https://unclefunker.github.io/romanticrider-legal/namhae/privacy.html">개인정보처리방침</a>
+          <a href="https://unclefunker.github.io/romanticrider-legal/namhae/privacy-en.html">Privacy Policy</a>
+          <a href="https://unclefunker.github.io/romanticrider-legal/namhae/terms.html">이용약관</a>
+          <a href="https://unclefunker.github.io/romanticrider-legal/namhae/terms-en.html">Terms of Service</a>
         </div>
       </article>
     </section>
