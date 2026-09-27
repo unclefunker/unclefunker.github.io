@@ -1,0 +1,22 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.romanticrider.spacetime",
+      "sha256_cert_fingerprints": [
+        "AB:17:8C:6A:BB:AE:AA:0D:B2:A3:53:BE:6A:69:B3:C7:94:FE:DA:43:09:5D:88:E8:AC:B5:FE:7D:F4:47:06:7A"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.romanticrider.spacetime.debug",
+      "sha256_cert_fingerprints": [
+        "90:3F:8F:AA:90:F4:0C:9F:AC:FD:1C:A9:A7:29:98:AD:E3:1E:42:E3:82:C6:2B:73:89:C5:0F:A2:80:5F:0C:41"
+      ]
+    }
+  }
+]

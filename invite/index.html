@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>그룹 초대 · 시공간 다이어리</title>
+  <meta name="description" content="시공간 다이어리 그룹 초대 링크입니다. 앱이 설치돼 있으면 앱이 열리고, 없으면 이 페이지에서 초대 코드를 확인할 수 있습니다.">
+  <meta name="robots" content="noindex">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --surface: #f1f6fd;
+      --surface-card: #ffffff;
+      --ink: #1b2635;
+      --body: #48586f;
+      --muted: #7688a3;
+      --blue: #3d6fd6;
+      --line: rgba(61, 111, 214, 0.16);
+      --radius: 1.25rem;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --surface: #10161f;
+        --surface-card: #18212e;
+        --ink: #eaf1fb;
+        --body: #b3c2d6;
+        --muted: #8496ad;
+        --line: rgba(119, 171, 242, 0.22);
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", "Segoe UI", sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+    }
+    main {
+      width: 100%;
+      max-width: 27rem;
+      background: var(--surface-card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 5vw, 2.25rem);
+      box-shadow: 0 10px 30px rgba(27, 38, 53, 0.1);
+    }
+    h1 {
+      font-size: clamp(1.35rem, 4vw, 1.7rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    p { color: var(--body); margin-top: 0.85rem; }
+    .code-label {
+      display: block;
+      margin-top: 1.75rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .code {
+      margin-top: 0.4rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: clamp(1.6rem, 7vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--blue);
+      word-break: break-all;
+    }
+    .store {
+      display: block;
+      margin-top: 1.75rem;
+      padding: 0.9rem 1.25rem;
+      border-radius: 0.85rem;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), opacity 140ms;
+    }
+    .store:hover { transform: translateY(-1px); opacity: 0.93; }
+    .store:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .note { margin-top: 1.25rem; font-size: 0.88rem; color: var(--muted); }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>그룹 초대</h1>
+    <p>
+      시공간 다이어리 앱이 설치돼 있으면 이 링크가 <strong>앱에서 바로</strong> 열립니다.
+      이 화면이 보인다면 앱이 아직 없거나, 브라우저가 링크를 직접 연 것입니다.
+    </p>
+
+    <section id="code-box" hidden aria-labelledby="code-label">
+      <span class="code-label" id="code-label">초대 코드</span>
+      <!-- 코드는 주소에 실려 온다. 앱을 설치한 뒤 이 코드를 직접 넣으면 같은 그룹으로 들어간다. -->
+      <p class="code" id="code"></p>
+    </section>
+
+    <a class="store" href="https://play.google.com/store/apps/details?id=com.romanticrider.spacetime">
+      Google Play 에서 설치하기
+    </a>
+
+    <p class="note">
+      설치한 뒤 이 링크를 다시 누르거나, 앱의 <em>그룹 &gt; 초대 코드 입력</em>에 위 코드를 넣어 주세요.
+      초대 코드는 발급 후 7일이 지나면 만료됩니다.
+    </p>
+  </main>
+
+  <script>
+    // 코드는 화면에 보여 주기만 한다 — 어디로도 보내지 않는다.
+    // (주소에 실린 값을 그대로 innerText 로 넣는다. innerHTML 을 쓰면 주소가
+    //  곧 스크립트 주입 통로가 된다.)
+    const raw = new URLSearchParams(location.search).get('code') || '';
+    const code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 16);
+    if (code) {
+      document.getElementById('code').textContent = code;
+      document.getElementById('code-box').hidden = false;
+    }
+  </script>
+</body>
+</html>
