@@ -150,6 +150,15 @@
       //    경로라 아무도 모른다.
       // ⚠️ referrer 는 **Play 를 거쳐 설치될 때만** 온다. 사이드로드·APK 직접
       //    설치에는 안 오므로, 코드를 사람이 읽고 넣는 경로가 정본이다.
+      //
+      // 🔴 **이 문자열 형식은 앱 시험이 대조하고 있다** (spacetime 레포의 referrer
+      //    왕복 시험 — 2026-09-28 SI-89). 앱이 자기 상수로 만든 값을 자기 파서에
+      //    먹이던 것을 **여기서 나가는 실제 형식**으로 바꿨기 때문이다(베낀 값끼리
+      //    맞춰 보는 것은 계약 검증이 아니다).
+      //    ⇒ **형식을 바꾸려면 바꾸기 전에 앱 쪽에 알릴 것.** 통지 없이 바꾸면
+      //    저쪽 시험이 먼저 붉어지고, 그쪽 사람은 «우리 파서가 깨졌다»로 읽어
+      //    엉뚱한 곳을 판다. 키 순서는 계약이 아니다(파서가 `&` 로 끊어 `invite`
+      //    만 찾는다) — 그래도 괜히 흔들지 않는다.
       const store = document.getElementById('store');
       const referrer = encodeURIComponent(
         'utm_source=spacetime_invite&utm_medium=link&invite=' + code,
