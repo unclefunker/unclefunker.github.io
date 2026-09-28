@@ -140,9 +140,16 @@
       document.getElementById('code-box').hidden = false;
 
       // 설치 후에도 코드가 따라가도록 Play 링크에 referrer 를 싣는다.
-      // ℹ️ 이 값을 앱이 읽으려면 **Play Install Referrer API** 가 필요하다.
-      //    지금은 읽는 쪽이 없으므로 **동작하는 기능이 아니라 걸어 둔 고리**다 —
-      //    없어도 이용자는 화면의 코드를 직접 넣으면 된다.
+      //
+      // ✅ **읽는 쪽이 앱에 있다** — `install_referrer_invite.dart`(SP-233 디퍼드
+      //    딥링크)가 첫 기동에서 한 번 읽고 버린다. 그 파서는 `&` 로 끊어
+      //    **`invite=CODE` 쌍만** 찾으므로 아래처럼 utm 이 섞여도 된다
+      //    (파서 주석이 그 형태를 명시한다).
+      // 🔴 **키 이름은 `invite` 로 고정**이다(앱 `GroupLinks.referrerKey`).
+      //    바꾸면 설치 후 자동 합류가 **조용히** 끊긴다 — 실패가 전부 조용한
+      //    경로라 아무도 모른다.
+      // ⚠️ referrer 는 **Play 를 거쳐 설치될 때만** 온다. 사이드로드·APK 직접
+      //    설치에는 안 오므로, 코드를 사람이 읽고 넣는 경로가 정본이다.
       const store = document.getElementById('store');
       const referrer = encodeURIComponent(
         'utm_source=spacetime_invite&utm_medium=link&invite=' + code,
