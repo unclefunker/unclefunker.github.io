@@ -106,7 +106,8 @@
       <p class="code" id="code"></p>
     </section>
 
-    <a class="store" href="https://play.google.com/store/apps/details?id=com.romanticrider.spacetime">
+    <a class="store" id="store"
+       href="https://play.google.com/store/apps/details?id=com.romanticrider.spacetime">
       Google Play 에서 설치하기
     </a>
 
@@ -117,14 +118,38 @@
   </main>
 
   <script>
-    // 코드는 화면에 보여 주기만 한다 — 어디로도 보내지 않는다.
-    // (주소에 실린 값을 그대로 innerText 로 넣는다. innerHTML 을 쓰면 주소가
-    //  곧 스크립트 주입 통로가 된다.)
-    const raw = new URLSearchParams(location.search).get('code') || '';
+    // 🔴 초대 코드를 싣는 키는 **`invite`** 다. `code` 가 아니다 (SI-89).
+    //
+    //    `code` 는 OAuth/PKCE 가 인가 코드에 쓰는 이름이라, 앱의 Supabase 딥링크
+    //    핸들러가 이 링크를 **로그인 콜백으로 오인**한다 — 링크를 열 때마다
+    //    AuthException 이 나고 설정 화면이 떠 있으면 "로그인이 완료되지 않았어요"
+    //    라는 **거짓 안내**까지 뜬다(개발 실측). 예약어를 피하는 것이 요점이므로
+    //    `token`·`token_hash`·`state`·`type` 도 쓰지 말 것.
+    //
+    //    ⚠️ 옛 `code` 링크는 **읽어는 준다**(이 페이지는 앱이 아니라서 충돌이
+    //    없다). 다만 **새로 만들지 않는다** — 옛 링크를 앱이 있는 기기에서 열면
+    //    위 거짓 안내가 그대로 난다. 관용은 «이미 보낸 문자»를 위한 것이다.
+    const params = new URLSearchParams(location.search);
+    const raw = params.get('invite') || params.get('code') || '';
     const code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 16);
+
     if (code) {
+      // 코드는 화면에 보여 주기만 한다 — 어디로도 보내지 않는다.
+      // (innerText 로 넣는다. innerHTML 을 쓰면 주소가 곧 스크립트 주입 통로다.)
       document.getElementById('code').textContent = code;
       document.getElementById('code-box').hidden = false;
+
+      // 설치 후에도 코드가 따라가도록 Play 링크에 referrer 를 싣는다.
+      // ℹ️ 이 값을 앱이 읽으려면 **Play Install Referrer API** 가 필요하다.
+      //    지금은 읽는 쪽이 없으므로 **동작하는 기능이 아니라 걸어 둔 고리**다 —
+      //    없어도 이용자는 화면의 코드를 직접 넣으면 된다.
+      const store = document.getElementById('store');
+      const referrer = encodeURIComponent(
+        'utm_source=spacetime_invite&utm_medium=link&invite=' + code,
+      );
+      store.href =
+        'https://play.google.com/store/apps/details?id=com.romanticrider.spacetime'
+        + '&referrer=' + referrer;
     }
   </script>
 </body>
